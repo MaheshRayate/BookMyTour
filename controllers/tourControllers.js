@@ -99,8 +99,6 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
     // },
   ]);
 
-  console.log(typeof stats);
-
   res.status(200).json({
     status: "success",
     result: stats.length,

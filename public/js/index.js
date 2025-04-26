@@ -12,8 +12,6 @@ const userPasswordForm = document.querySelector(".form-user-password");
 const bookBtn = document.getElementById("book-tour");
 const mapBox = document.getElementById("map");
 
-console.log(loginForm);
-
 if (loginForm) {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -26,9 +24,9 @@ if (loginForm) {
 
 if (mapBox) {
   const x = mapBox.dataset.locations;
-  console.log(typeof x);
+
   const locations = JSON.parse(x);
-  console.log(locations);
+
   displayMap(locations);
 }
 

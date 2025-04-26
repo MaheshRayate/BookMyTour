@@ -11,7 +11,7 @@ const sendErrorDev = (err, req, res) => {
     });
   }
   // RENDERED WEBSITE
-  console.log(err);
+  console.log("ERROR🎆", err);
   return res.status(err.statusCode).render("error", {
     title: "Something went Wrong",
     msg: err.message,
@@ -19,7 +19,7 @@ const sendErrorDev = (err, req, res) => {
 };
 
 const sendErrorProd = (err, req, res) => {
-  console.log(req.originalUrl);
+  
   // A) FOR API
   if (req.originalUrl.startsWith("/api")) {
     // Operational trusted error:send message to client
@@ -53,21 +53,17 @@ const sendErrorProd = (err, req, res) => {
 };
 
 const handleCastErrorDB = (err) => {
-  console.log("inside handleCast");
   const message = `Invalid ${err.path}: ${err.value}`;
   return new AppError(message, 400);
 };
 
 const handleDuplicateFieldsDB = (err) => {
-  // console.log("inside handleDuplicateFieldsDB")
   const duplicateField = err.errorResponse.errmsg.match(/name:\s*"([^"]+)"/);
-  console.log(duplicateField);
   const message = `Duplicate Field Value:${duplicateField}.Please Use another value`;
   return new AppError(message, 404);
 };
 
 const handleValidationErrorDB = (err) => {
-  console.log("Inside handleValidationErrorDB");
   const errors = Object.values(err.errors).map((el) => el.message);
   const message = `Invalid Input Data ${errors.join(". ")}`;
   return new AppError(message, 400);
@@ -85,7 +81,6 @@ const handleJWTExpiredError = (err) => {
 
 module.exports = (err, req, res, next) => {
   console.log("NODE_ENV is:", process.env.NODE_ENV);
-  // console.log(err.stack);
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
   console.log(err);

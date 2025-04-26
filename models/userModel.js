@@ -110,7 +110,7 @@ userSchema.methods.correctPassword = async function (
 /*Now, this passwordChangedAt property here will always be changed, of course, when someone change the password. So right now, we don't have that logic anywhere, and so nowhere we are actually defining this property. And so, most of the documents, so most of the users, they will simply not have this property in their data, so in their object, right? */
 
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
-  console.log(this.passwordChangedAt);
+  // console.log(this.passwordChangedAt);
   if (this.passwordChangedAt != undefined) {
     console.log("Here I'm🐶🐶🐶 stuck in changedPasswordAfter");
     const changedTimeStamp = parseInt(
@@ -118,7 +118,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
       10
     );
 
-    console.log(changedTimeStamp, JWTTimestamp);
+    // console.log(changedTimeStamp, JWTTimestamp);
 
     return JWTTimestamp < changedTimeStamp;
     // if this is true we'll throw error see that in authController.js
@@ -141,7 +141,7 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest("hex");
 
-  console.log({ resetToken }, this.passwordResetToken); //NEW ES6 way to log a variable with its variable name //and I'm logging in here as an object because this way, it will then actually tell me the variable name along with its value.
+  // console.log({ resetToken }, this.passwordResetToken); //NEW ES6 way to log a variable with its variable name //and I'm logging in here as an object because this way, it will then actually tell me the variable name along with its value.
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000; //Validity of token 10 minutes
 

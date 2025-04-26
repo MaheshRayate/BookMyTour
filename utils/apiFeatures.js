@@ -15,9 +15,9 @@ class APIFeatures {
 
     // localhost:3000/api/v1/tours?duration[gte]=5&price[lte]=400
     let queryStr = JSON.stringify(queryObj);
-    console.log(queryStr);
+    // console.log(queryStr);
     queryStr = queryStr.replace(/\b(gte|lte|lt|gt)\b/g, (match) => `$${match}`);
-    console.log(queryStr);
+    // console.log(queryStr);
 
     this.query = this.query.find(JSON.parse(queryStr));
 
@@ -28,11 +28,11 @@ class APIFeatures {
     // 2) SORTING
 
     if (this.queryString.sort) {
-      console.log("SORTING...");
+      // console.log("SORTING...");
       let sortBy = this.queryString.sort;
       sortBy = sortBy.split(",");
       sortBy = sortBy.join(" ");
-      console.log(sortBy);
+      // console.log(sortBy);
       this.query = this.query.sort(sortBy);
     } else {
       this.query = this.query.sort("-createdAt");
@@ -63,7 +63,7 @@ class APIFeatures {
     const page = this.queryString.page * 1 || 1;
     const limit = this.queryString.limit * 1 || 100;
     const skip = (page - 1) * limit;
-    console.log(skip);
+    // console.log(skip);
 
     this.query = this.query.skip(skip).limit(limit);
     return this;

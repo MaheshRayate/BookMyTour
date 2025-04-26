@@ -12,7 +12,6 @@ exports.getOverview = catchAsync(async (req, res) => {
   // 2).Build the template
 
   // 3).Render that template using tour data
-  console.log("Hello");
   res.status(200).render("overview", {
     title: "All tours",
     tours,
@@ -22,7 +21,7 @@ exports.getOverview = catchAsync(async (req, res) => {
 exports.getTour = catchAsync(async (req, res, next) => {
   // 1).Get the data for the requested tour(including reviews and guides)
   // guides are all ready populated we need to populate reviews now
-  // console.log(req.params);
+
   const tour = await Tour.findOne({ slug: req.params.slug }).populate({
     path: "reviews",
     fields: "review rating user",

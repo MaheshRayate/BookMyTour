@@ -70,8 +70,8 @@ const filterObj = (obj, ...allowedFields) => {
 // This is for updating data of a user who is logged in by himself/herself
 // We will not update password here bcoz for password we've created a separate route
 exports.updateMe = catchAsync(async (req, res, next) => {
-  console.log(req.file); // This will give us the file that we uploaded
-  console.log(req.body); // This will give us the data that we sent in the body
+  // console.log(req.file); // This will give us the file that we uploaded
+  // console.log(req.body); // This will give us the data that we sent in the body
 
   // 1).Create error if user POSTS password
 

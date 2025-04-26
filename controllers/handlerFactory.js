@@ -81,7 +81,7 @@ exports.getAll = (Model) =>
     // To allow the Nested for GEt Reviews on tour
     let filter = {};
     if (req.params.tourId) filter = { tour: req.params.tourId };
-    console.log(req.query);
+    // console.log(req.query);
 
     // EXECUTE QUERY
     const features = new APIFeatures(Model.find(), req.query)

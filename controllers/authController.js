@@ -45,7 +45,7 @@ const signToken = (id) => {
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
   const url = `${req.protocol}://${req.get("host")}/me`;
-  console.log(url);
+  // console.log(url);
   await new Email(newUser, url).sendWelcome(); //This will send the email to the user
 
   // jwt.sign(payload, secretOrPrivateKey, [options, callback])
@@ -68,7 +68,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   // Since we are not showing passwords when we read data from the DB so we need to explicitly select it to get hold of password
   const user = await User.findOne({ email: email }).select("+password"); //User.findOne({email})
-  console.log(user);
+  // console.log(user);
 
   /*and now remember that the function that we just defined is an instanced method. And so therefore it is available on all the user documents. And so this variable here right now is a user document, right? Because it's a result of querying the user model. And so we can now say user.correctPassword. */
   // const correct=
@@ -123,7 +123,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   // promisify(jwt.verify)(token,process.env.JWT_SECRET) it will actually be the decoded value will actually be the decoded data,so the decoded payload from this JSON web token.
 
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
+  // console.log(decoded);
 
   // Here we've to handle errors of 2 types
   // We'll make the Global error handling middleware to handle these 2 types of errors
@@ -158,7 +158,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   // GRANT ACCESS TO THE NEXT ROUTE HANDLER
   req.user = freshUser;
   res.locals.user = freshUser; //for rendering templates
-  console.log("Authenticated User:", req.user);
+  // console.log("Authenticated User:", req.user);
   next();
 });
 
@@ -256,7 +256,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
-    console.log(err);
+    // console.log(err);
 
     return next(
       new AppError(

@@ -7,6 +7,7 @@ const userRouter = require("./routes/userRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
 const viewRouter = require("./routes/viewRoutes");
 const bookingRouter = require("./routes/bookingRoutes");
+const compression = require("compression"); //for compressing the response data
 
 const AppError = require("./utils/appError");
 
@@ -75,6 +76,8 @@ app.use((req, res, next) => {
   console.log("Hello from the custom Middleware 1 😄😄");
   next();
 });
+
+app.use(compression()); //for compressing the response data
 
 app.use((req, res, next) => {
   // console.log(req.cookies);

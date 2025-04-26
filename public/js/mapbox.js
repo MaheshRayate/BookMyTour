@@ -1,5 +1,3 @@
-console.log("Hello from the Client Side");
-
 // const locations = document.getElementById("map").dataset.locations;
 // console.log(locations);
 

@@ -21,10 +21,9 @@ const port = process.env.PORT || 3000;
 // DATABASE=mongodb+srv://mahesh:Torture%40123@cluster0.svsj1.mongodb.net/
 
 const DB = process.env.DATABASE;
-// console.log(DB);
+
 
 mongoose.connect(DB).then((con) => {
-  // console.log(con.connections);
   console.log("DB Connection Successful");
 });
 console.log(DB);
